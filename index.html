@@ -282,13 +282,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 
 			<div id="audio-container" class="audio-box">
 
-				
-
-				<audio id="song" autoplay loop>
-			<source src="wp-content/uploads/2025/04/Jashn-E-Bahaaraa (Instrumental - Flute) - A. R. Rahman.mp3"
-			type="audio/mp3">
-		</audio>  
-			
 
 					
 			<div class="elementor-icon-wrapper" id="unmute-sound" style="display: none;">
@@ -303,90 +296,6 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16
 			
 		</div>
 
-						<script>
-					jQuery("document").ready(function($) {
-						var e = window.settingAutoplay;
-						if(e) {
-							$("#mute-sound").show();
-							if(document.body.contains(document.getElementById("song"))) {
-								document.getElementById("song").play();
-							}
-						} else { 
-							$("#unmute-sound").show();
-						}
-						$("#audio-container").click(function(u) {
-							if(e) {
-								$("#mute-sound").hide();
-								$("#unmute-sound").show();
-								playAud();//document.getElementById("song").pause();
-								e = !1
-							} else {
-								$("#unmute-sound").hide();
-								$("#mute-sound").show();
-								//document.getElementById("song").play();
-								playAud();
-								e = !0;
-							}
-						})
-						function playAud(){
-							if(document.body.contains(document.getElementById("song"))) {
-								if(e){
-									document.getElementById("song").pause();
-								} else {
-									document.getElementById("song").play();
-								}
-							} else {
-								toggleAudio();
-							}
-						}
-					});
-				</script>
-							
-		<script>
-		// Ambil elemen audio dengan ID "song"
-		const audioElement = document.getElementById("song");
-
-		// Event listener untuk visibility change
-		document.addEventListener("visibilitychange", () => {
-			if (document.visibilityState === "hidden") {
-				// Pause audio jika tab berpindah
-				if (audioElement && !audioElement.paused) {
-					audioElement.pause();
-				}
-
-				// Pause video YouTube jika tab berpindah
-				if (typeof player !== "undefined" && player.getPlayerState) {
-					if (player.getPlayerState() === YT.PlayerState.PLAYING || player.getPlayerState() === YT.PlayerState.BUFFERING) {
-						player.pauseVideo();
-					}
-				}
-			} else if (document.visibilityState === "visible") {
-				// Play audio jika tab kembali aktif
-				if (audioElement && audioElement.paused) {
-					audioElement.play().catch((err) => {
-						console.log("Error saat mencoba memutar audio:", err);
-					});
-				}
-
-				// Play video YouTube jika tab kembali aktif
-				if (typeof player !== "undefined" && player.getPlayerState) {
-					if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
-						player.playVideo();
-					}
-				}
-			}
-		});
-
-		// Memastikan audio langsung diputar saat halaman dimuat
-		window.addEventListener("load", () => {
-			if (audioElement) {
-				audioElement.play().catch((err) => {
-					console.log("Error saat mencoba memutar audio saat halaman dimuat:", err);
-				});
-			}
-		});
-
-		</script>
 
 						</div>
 				</div>
@@ -436,6 +345,87 @@ open invitation</span>
 								</div>
 				</div>
 				</div>
+
+								<div class="elementor-element elementor-element-1966e4c elementor-widget elementor-widget-html" data-id="1966e4c" data-element_type="widget" data-widget_type="html.default">
+                                <div class="elementor-widget-container">
+                                    <style>
+                                        #playPauseButton {
+                                            position: fixed;
+                                            bottom: 20px;
+                                            right: 20px;
+                                            background-color: rgba(0, 0, 0, 0.5);
+                                            /* transparan elegan */
+                                            border: none;
+                                            border-radius: 50%;
+                                            padding: 2px;
+                                            cursor: pointer;
+                                            z-index: 9999;
+                                            transition: background-color 0.3s ease;
+                                        }
+
+                                        #playPauseButton:hover {
+                                            background-color: rgba(255, 255, 255, 0.2);
+                                        }
+
+                                        #playPauseButton svg {
+                                            width: 25px;
+                                            height: 25px;
+                                            fill: white;
+                                        }
+                                    </style>
+
+                                    <audio id="myAudio">
+  <source src="wp-content/uploads/2025/04/Jashn-E-Bahaaraa (Instrumental - Flute) - A. R. Rahman.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+                                    <button id="playPauseButton">
+  <svg id="iconPlayPause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M8 5v14l11-7z" /> <!-- Ikon play -->
+  </svg>
+</button>
+
+                                    <script>
+                                        const audio = document.getElementById("myAudio");
+                                        const button = document.getElementById("playPauseButton");
+                                        const icon = document.getElementById("iconPlayPause");
+
+                                        const playIcon = '<path d="M8 5v14l11-7z" />'; // ▶️
+                                        const pauseIcon = '<path d="M6 19h4V5H6zm8-14v14h4V5h-4z" />'; // ⏸️
+
+                                        button.addEventListener("click", function() {
+                                            if (audio.paused) {
+                                                audio.play();
+                                                icon.innerHTML = pauseIcon;
+                                            } else {
+                                                audio.pause();
+                                                icon.innerHTML = playIcon;
+                                            }
+                                        });
+
+                                        audio.addEventListener("ended", function() {
+                                            icon.innerHTML = playIcon;
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-077e40e elementor-widget elementor-widget-html" data-id="077e40e" data-element_type="widget" data-widget_type="html.default">
+                                <div class="elementor-widget-container">
+                                    <audio id="myAudio">
+  <source src="wp-content/uploads/2025/04/Jashn-E-Bahaaraa (Instrumental - Flute) - A. R. Rahman.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+                                    <script>
+                                        document.addEventListener('click', function() {
+                                            var audio = document.getElementById("myAudio");
+                                            audio.play();
+                                        }, {
+                                            once: true
+                                        });
+                                    </script>
+                                </div>
+                            </div>
 				</article>
 				
 		<div class="elementor-element elementor-element-16364f8a e-con-full e-flex e-con e-child" data-id="16364f8a" data-element_type="container" id="open" data-settings="{}">
